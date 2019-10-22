@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>动态下啦框</title>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<style type="text/css">
+		#content{
+		    width: 173px;
+		    height: auto;
+		    background: gray;
+		    margin-left: 5%;
+		}
+		li{
+
+			list-style-type:none;
+		}
+		li:hover{
+			cursor: default;
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	<label>模型名称:</label><input id="modelName">
+	<div id="content"></div>
+	<script type="text/javascript">
+		var data = ['1','11','22','3','33'];
+		$("#modelName").keyup(function(){
+			$("#content").empty();
+			let mN = $("#modelName").val();
+			if(mN){
+				let str = "";
+				for(let i =0;i<data.length;i++){
+					if(data[i].indexOf(mN)!=-1){
+						str += "<li value="+data[i]+">"+data[i]+"</li>";
+					}
+				}
+				$("#content").append(str);
+			}
+        })
+      
+        $("#content").delegate('li','click',function(event){
+        	let v = $(this).attr("value");
+        	$("#modelName").val(v);
+        	$("#content").empty();
+		})
+        
+	</script>
+</body>
+</html>
